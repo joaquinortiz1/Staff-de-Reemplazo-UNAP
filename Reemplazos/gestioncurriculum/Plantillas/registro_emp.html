@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #337ab7;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2e6da4;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Registro empleador</h1>
+        </header>
+
+        {% if error_registro %}
+            <div class="error">
+                El nombre de usuario ya existe.
+            </div>
+        {% endif %}
+
+        <main>
+            <form action="{% url 'registro' %}" method="post">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" name="username" id="username" placeholder="Nombre de usuario">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" name="email" id="email" placeholder="Correo electrónico">
+                </div>
+
+                <div class="input-group">
+                    <label for="password1">Contraseña</label>
+                    <input type="password" name="password1" id="password1" placeholder="Contraseña">
+                </div>
+
+                <div class="input-group">
+                    <label for="password2">Repetir contraseña</label>
+                    <input type="password" name="password2" id="password2" placeholder="Repetir contraseña">
+                </div>
+
+                <input type="submit" value="Registrarse">
+            </form>
+        </main>
+
+        <footer>
+            <p>Copyright &copy; 2023</p>
+        </footer>
+    </div>
+</body>
+</html>
